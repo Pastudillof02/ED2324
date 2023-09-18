@@ -217,7 +217,7 @@ mediana (x,y,z,t,u)  | x > z = mediana (z,y,x,t,u)
                      | otherwise = z
 
 
-jj
+
 
 
 
