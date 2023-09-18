@@ -165,25 +165,56 @@ esMúltiplo x y | y>0 = ((mod x y) == 0)
                | otherwise = False
 
 
--- EJERCICIO 12  NO ENTENDI UNA VERGASION Y ME DA FLOJERA PENSAR--
+-- EJERCICIO 12  no entendi hacer--
+infixl 1 ==>>
 (==>>) :: Bool -> Bool -> Bool
+False ==>> y = True --si el primer argumento es F independientemente del valor del segundo parametro vale T
+True ==>> False = False --cuando el primer argumento es T el resultado final depende del segundo argumento
+True ==>> True = True
 
-
--- EJERCICIO 13 -- 
+-- EJERCICIO 13  revisar-- 
 esBisiesto :: Integer -> Bool
-esBisiesto x = 
+esBisiesto x = esMúltiplo x 4 ==>> esMúltiplo x 100 ==>> esMúltiplo x 400
 
 
+-- EJERCICIO 14 repetir esta mal--
+potencia :: Integer -> Integer -> Integer
+potencia x y | y==0 = 1
+             | y>0 = x*(potencia x (y-1))
+             | otherwise = error "Exponente no natural"
+
+potencia' :: Integer -> Integer -> Integer
+potencia' x y | y==0 = 1
+              | y==1 = x
+              | y==2 = x*x
+              | y>2 && (mod y 2 ==0) = potencia' (potencia' x (div y 2)) 2 
+              | y>2 && (mod y 2 /=0) = potencia' (potencia' x (div (y-1) 2)) 2
+              |otherwise = error "Exponente no natural"
 
 
+-- EJERCICIO 15 --
+factorial :: Integer -> Integer
+factorial x | x==0 =1
+            | x>0 = x * factorial(x-1) 
+            | otherwise = error "Factorial negativo"
 
 
+-- EJERCICIO 16  repetir--
+divideA :: Integer -> Integer -> Bool
+divideA x y = (mod y x) ==0
+
+--p1_divideA x y = y/=0 && y `divideA` x  ==> div x y * y == x
+
+--p2_divideA x y z = x/=0 && x `divideA` y && x `divideA` z ==> x `divideA` (y+z) 
 
 
-
-
-
-
+-- EJERCICIO 17 no c --
+mediana :: Ord a => (a,a,a,a,a) -> a
+mediana (x,y,z,t,u)  | x > z = mediana (z,y,x,t,u)
+                     | y > z = mediana (x,z,y,t,u)
+                     | z > t = mediana (x,y,t,z,u) 
+                     | z > u = mediana (x,y,u,t,z)
+                     | otherwise = z
 
 
 
