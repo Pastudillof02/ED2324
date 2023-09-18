@@ -1,22 +1,25 @@
 import Test.QuickCheck --para hacer pruebas es importante importarlo
 
+--comentario de una linea
+{-comentario de mas de una linea-}
+
 -- EJERCICIO 1 --
     -- apartado a --
 esTerna :: Integer -> Integer -> Integer -> Bool
-esTerna x y z = if (x^2 + y^2) == z^2 then True else False
+esTerna x y z = (x^2) + (y^2) == (z^2)
 --Recuerda que True y False primera con mayusc
 
     -- apartado b --
 terna :: Integer -> Integer -> (Integer, Integer, Integer)
 terna x y | x>y = (x^2-y^2, 2*x*y, x^2+y^2)
---Para multiplicar utilizar * y si para la salida quiero mas de un numero
---ponerlo entre parentesis y separarlo con comas
+{-Para multiplicar utilizar * y si para la salida quiero mas de un numero
+ponerlo entre parentesis y separarlo con comas-}
 
-    -- apartado c NO LO ENTIENDO-- 
---p_ternas x y = x>0 && y>0 && x>y ==> esTerna 11 12 h
-  --where (11,12,h) = terna x y
+    -- apartado c y d -- 
+p_ternas x y = x>0 && y>0 && x>y ==> esTerna l1 l2 h
+    where 
+        (l1,l2,h) = terna x y
 
-    -- apartado d NO LO ENTIENDO--
 
 
 -- EJERCICIO 2 --
@@ -31,11 +34,14 @@ ordena2 (x,y) | x>y = (y,x)
               | otherwise = (x,y)
 --utilizar el otherwise como el else 
 
---p1_ordena2 x y = enOrden (ordena2 (x,y))
---where enOrden (x,y) = x<=y
+--Main> quickCheck p1_ordena2 colocarlo asi en la terminal
+p1_ordena2 x y = enOrden (ordena2 (x,y))
+    where 
+        enOrden (x,y) = x<=y
 
---p2_ordena2 x y = mismosElementos (x,y) (ordena2 (x,y))
---where mismosElementos (x,y) (z,v) = (x==z && y==v) || (x==v && y==z)
+p2_ordena2 x y = mismosElementos (x,y) (ordena2 (x,y))
+    where 
+        mismosElementos (x,y) (z,v) = (x==z && y==v) || (x==v && y==z)
 
 
     -- apartado b --
@@ -54,7 +60,7 @@ max2 x y | x<y = y
     -- apartado b --
 p1_max2 x y = coincide(max2 x y)
     where 
-        coincide m = m==x || m==y
+      coincide m = m==x || m==y
   
 
 p2_max2 x y = mayor(max2 x y)
@@ -86,6 +92,8 @@ iguales3 (x,y,z) = x==y && x==z
 -- EJERCICIO 7 -- 
 --Funciones predefinidas --> div para el cociente, mod para el resto de la division
 -- type sirve para que sea mas legible el codigo para crear sinonimos
+
+    -- apartado a --
 type TotalSegundos = Integer 
 type Horas = Integer
 type Minutos = Integer
@@ -97,6 +105,81 @@ descomponer x = (horas, minutos, segundos)
         horas = div x 3600
         minutos = div (mod x 3600) 60
         segundos = mod (mod x 3600) 60
+
+    -- apartado b --
+p_descomponer x = x>=0 ==> h*3600 + m*60 + s == x
+                           && entre m (0,59)
+                           && entre s (0,59)
+    where  (h,m,s) = descomponer x  
+
+
+-- EJERCICIO 8 --
+unEuro :: Double  --esto es como definir una cte
+unEuro = 166.386
+
+    -- apartado a --
+pesetasAEuros :: Double -> Double
+pesetasAEuros x = x/unEuro
+
+    -- apartado b --
+eurosAPesetas :: Double -> Double
+eurosAPesetas x = x*unEuro
+
+    -- apartado c --
+--p_inversas x = eurosAPesetas (pesetasAEuros x) == x
+
+
+-- EJERCICIO 9 -- 
+infix 4 ~=  --indica la precedencia del operador
+(~=) :: Double -> Double -> Bool --declaracion del operador, como es personalizado por eso lo hacemos con una funcion
+x ~= y = abs (x-y) < epsilon --definicion del operador, epsilon es una cte que definimos en where
+    where epsilon = 1/1000
+
+p_inversas x = eurosAPesetas (pesetasAEuros x) ~= x
+
+
+-- EJERCICIO 10 --
+    -- apartado a --
+raices :: Double -> Double -> Double -> (Double, Double)
+raices a b c | b*b - 4*a*c<0  = error "Raices no reales" --para lanzar un mensaje de error
+             | otherwise = ((-b + sqrt(b*b - 4*a*c)) / 2*a, (-b - sqrt(b*b - 4*a*c)) / 2*a)
+
+    -- apartado b --
+p1_raices a b c = esRaiz r1 && esRaiz r2
+ where
+    (r1,r2) = raices a b c
+    esRaiz r = a*r^2 + b*r + c ~= 0
+
+
+-- NO ME DA BIEN CORREGIR
+ {-p2_raices a b c = a>0 && b*b - 4*a*c>=0 ==> esRaiz r1 && esRaiz r2
+ where
+    (r1,r2) = raices a b c
+    esRaiz r = a*r^2 + b*r + c ~= 0
+-}
+
+-- EJERCICIO 11 --
+esMúltiplo :: (Integral a) => a -> a -> Bool 
+--La clase Integral es util para cuando vaya a hacer calculos con nº enteros
+esMúltiplo x y | y>0 = ((mod x y) == 0) 
+               | otherwise = False
+
+
+-- EJERCICIO 12  NO ENTENDI UNA VERGASION Y ME DA FLOJERA PENSAR--
+(==>>) :: Bool -> Bool -> Bool
+
+
+-- EJERCICIO 13 -- 
+esBisiesto :: Integer -> Bool
+esBisiesto x = 
+
+
+
+
+
+
+
+
 
 
 
