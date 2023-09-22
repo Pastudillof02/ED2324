@@ -12,6 +12,7 @@ esTerna x y z = (x^2) + (y^2) == (z^2)
     -- apartado b --
 terna :: Integer -> Integer -> (Integer, Integer, Integer)
 terna x y | x>y = (x^2-y^2, 2*x*y, x^2+y^2)
+          | otherwise = error "No es pitagorica"
 {-Para multiplicar utilizar * y si para la salida quiero mas de un numero
 ponerlo entre parentesis y separarlo con comas-}
 
@@ -19,7 +20,6 @@ ponerlo entre parentesis y separarlo con comas-}
 p_ternas x y = x>0 && y>0 && x>y ==> esTerna l1 l2 h
     where 
         (l1,l2,h) = terna x y
-
 
 
 -- EJERCICIO 2 --
@@ -51,6 +51,9 @@ ordena3 (x,y,z) | z < fst(ordena2(x,y)) = (z,fst(ordena2(x,y)), snd(ordena2(x,y)
                 | otherwise = (fst(ordena2(x,y)),snd(ordena2(x,y)),z)
 
 
+    -- apartado c -- 
+
+    
 -- EJERCICIO 4 --
     -- apartado a --
 max2 :: Ord a => a -> a -> a
