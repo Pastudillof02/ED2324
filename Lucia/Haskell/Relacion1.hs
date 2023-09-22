@@ -7,6 +7,7 @@ import Test.QuickCheck --para hacer pruebas es importante importarlo
     -- apartado a --
 esTerna :: Integer -> Integer -> Integer -> Bool
 esTerna x y z = (x^2) + (y^2) == (z^2)
+
 --Recuerda que True y False primera con mayusc
 
     -- apartado b --
@@ -53,7 +54,7 @@ ordena3 (x,y,z) | z < fst(ordena2(x,y)) = (z,fst(ordena2(x,y)), snd(ordena2(x,y)
 
     -- apartado c -- 
 
-    
+
 -- EJERCICIO 4 --
     -- apartado a --
 max2 :: Ord a => a -> a -> a
@@ -83,8 +84,7 @@ p4_max2 x y = mayory(max2 x y)
 
 -- EJERCICIO 5 --
 entre :: Ord a => a -> (a,a) -> Bool 
-entre x (minimo,maximo) | x>=minimo && x<=maximo = True
-                        | otherwise = False
+entre x (minimo,maximo) = (x>= minimo && x<=maximo)
 
 
 -- EJERCICIO 6 --
@@ -221,8 +221,12 @@ mediana (x,y,z,t,u)  | x > z = mediana (z,y,x,t,u)
 
 
 
+{- NOTAS
 
+data Dia Lunes | Martes | Miercoles | ... | Domingo 
+son los valores que tomara data y que escribira en consola
 
+-}
 
 
 
