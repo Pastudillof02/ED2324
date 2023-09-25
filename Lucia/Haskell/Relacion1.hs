@@ -226,6 +226,22 @@ mediana (x,y,z,t,u)  | x > z = mediana (z,y,x,t,u)
 data Dia Lunes | Martes | Miercoles | ... | Domingo 
 son los valores que tomara data y que escribira en consola
 
+
+data T = A | B deriving Show 
+--Tema 2: si no pongo el deriving show me daria error pq la terminal no seria capaz de mostrarlo por pantalla, algo parece al toString
+
+f :: Char -> T 
+f x = if x=='a' then A else B
+
+
+type Numero = Integer --sinonimo de tipo
+
+h:: Numero -> Numero
+h x = x+3*x
+
+
+type Nombre = String
+
 -}
 
 
