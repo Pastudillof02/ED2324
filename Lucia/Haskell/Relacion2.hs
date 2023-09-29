@@ -53,6 +53,9 @@ toma n (x:xs)
     | otherwise = []
 
 
+--take 10(map (*10) [1,3..]) si coloco esto en la consola me coge 10 elementos de la lista infinita y me los multiplica cada uno por 10
+--take 10(filter (>100) (map (*10) [1,3..])) 
 
 --argumentos simples x y z
 --argumentos compuestos xs ys zs
+-- para definir una lista infinita [1,3..]
