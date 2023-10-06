@@ -1,6 +1,7 @@
 ----------------------------    TEMA 2   ---------------------------------------
 
 import Test.QuickCheck
+import Data.Char
 
 len :: [a] -> Int --calcula el nº de elem de la lista
 len xs = if null xs then 0 else 1 + len(tail xs)
@@ -98,7 +99,6 @@ map (f 10 20) [1,2,3] -- es correcto debido a q es una funcion que espera un arg
 map (map suma10) [[1,2,3], [4,5], [6,7,8]] --esto esta bien
 map (map (+10)) [[1,2,3], [4,5], [6,7,8]] --esto esta bien
 map (map suma10) [1,2,3] --esto estaria mal, porque espera una lista de sublistas
-
 -}
 
 isMultipleOf :: Integer -> Integer -> Bool
@@ -115,18 +115,81 @@ esPar x = mod x 2 == 0
 misterio :: Integer -> Bool
 misterio = not . esPar
 
--- Bool -> Bool     .     Integer -> Bool  =   Bool -> Bool 
+-- Bool -> Bool     .     Integer -> Bool  =   Bool -> Bool  primero calcula lo de la derecha
 
---pag 45
+suma10:: Integer -> Integer
+suma10 x = x+10
 
-
-
-
-
+--(take 2 . map suma10) [5,6,7,8] me devuelve [15,16] hace primero la suma a todos los elem y dps coge los dos primeros
 
 
+{-data Direccion = North | South | East | West 
+--cuando defino un tipo nuevo no esta nada definido para el tipo, por ej si trato de hacer una igualdad dara error
+--tenemos que introducir el tipo para que funcionen las demas clases de tipos, a traves de la instancia
 
 
+directionToInt :: Direccion -> Int --no podria hacer operaciones con el solo devolver ese valor hay que hacer instancia
+directionToInt North = 0
+directionToInt South = 1
+directionToInt East = 2
+directionToInt West = 3
+
+class MyClass a where  --a nombre de la clase que representa los tipos a los que se le podra aplicar
+    myFunction :: a -> Bool --toda la clase que implemente la interfaz tiene que definir sus funciones
+
+instance MyClass Direccion where --introduce en esa clase este tipo por tanto definira sus funciones
+    myFunction North = True
+    myFunction _     = False -- para cualquier otra cosa devuelve false
+
+
+instance MyClass Char where --para que funcione con caracteres tmb
+    myFunction c = even (ord c)
+
+instance Eq Direccion where --poner los casos
+    North == North = True
+    South == South = True
+    East == East = True
+    West == West = True
+    _ == _ = False
+
+instance Ord Direction where
+    North <= _ = True
+    South <= North = False
+    South <= _ = True
+    East <= North = False
+    East <= South = False
+    East <= _ = True
+    West <= North = False
+    West <= South = False
+    West <= East = False
+    West <= _ = True
+
+
+instance Show Direction where 
+    show North = "North" --eran tipo data el North y eso pq Direction era data
+    show South = "South"
+    show East = "East"
+    show West = "West"
+
+-}
+data Direccion = North | South | East | West deriving (Eq,Ord,Show) --poniendo eso se me generan las instancias automaticamente y no tengo que hacer lo de antes
+
+
+
+--TIPOS DE UNION 
+data Degrees = Celsius Double | Fahrenheit Double deriving Show
+
+list :: [Degrees]
+list = [Celsius 1.5, Fahrenheit 55.2]
+
+frozen:: Degrees -> Bool
+frozen (Celsius c) = c <= 0
+frozen (Fahrenheit f) = f <= 32
+
+data TU = Number Int | Character Char | Boolean Bool deriving (Show)
+
+list2 :: [TU]
+list2 = [Number 10, Number 100, Character 'a', Boolean True]
 
 
 
