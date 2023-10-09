@@ -182,15 +182,62 @@ data Degrees = Celsius Double | Fahrenheit Double deriving Show
 list :: [Degrees]
 list = [Celsius 1.5, Fahrenheit 55.2]
 
-frozen:: Degrees -> Bool
+frozen :: Degrees -> Bool
 frozen (Celsius c) = c <= 0
 frozen (Fahrenheit f) = f <= 32
 
-data TU = Number Int | Character Char | Boolean Bool deriving (Show)
+data TU = Number Int | Character Char | Boolean Bool deriving (Show) -- tipos predefinidos
 
 list2 :: [TU]
 list2 = [Number 10, Number 100, Character 'a', Boolean True]
 
+
+
+{-
+--cuando el tipo definido aparece en su propia definicion creamos recursividad
+data SecuenciaEnteros = Vacia | Nodo Int SecuenciaEnteros deriving (Show) --una lista tiene un elem y el resto d la secuencia, recursividad
+--Vacia me representa el caso base que es cuando la secuencia es vacia, Nodo para cuando la secuencia no es vacia
+
+sec1 :: SecuenciaEnteros
+sec1 = Vacia
+
+sec2 :: SecuenciaEnteros
+sec2 = Nodo 10 Vacia --Secuencia con solo un elem
+
+sec3 :: SecuenciaEnteros
+sec3 = Nodo 10 (Nodo 20  Vacia) --Secuencia con dos elem, para detener la recursividad debe aparecer el caso base
+
+longSec :: SecuenciaEnteros -> Int --nº de elem d la secuencia
+longSec Vacia = 0 --tendra tantos casos como vengan en la definicion
+longSec (Nodo x ys) = 1 + longSec ys --podria haber puesto longSec (Nodo _ ys) = 1 + longSec ys
+
+-}
+
+data Sec a = Vacia | Nodo a (Sec a) deriving (Show)--la secuencia es de tipo a y el primer elem tmb
+
+sec2 :: Sec Int
+sec2 = Nodo 10 (Nodo 20 (Nodo 30 Vacia))
+
+sec3 :: Sec Char
+sec3 = Nodo 'a' (Nodo 'b' (Nodo 'c' (Nodo 'd' Vacia)))
+
+longSec :: Sec a -> Int
+longSec Vacia = 0
+longSec (Nodo _ ys) = 1 + longSec ys
+
+sumaSec :: (Num a) => Sec a -> a
+sumaSec Vacia = 0
+sumaSec (Nodo x ys) = x + sumaSec ys
+
+
+concatSec :: Sec a -> Sec a -> Sec a --tienen que tener en este caso el mismo tipo me lo indica la a
+concatSec Vacia ys = ys --me da igual si el segundo es vacio o no encaja con ys 
+concatSec (Nodo x xs) ys = Nodo x  (concatSec xs ys)
+
+{-  EQUIVALENCIA de concatSec
+    [] ++ ys = ys
+    (x:xs) ++ ys = x : (xs ++ys)
+-}
 
 
 
