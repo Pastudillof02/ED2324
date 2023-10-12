@@ -18,20 +18,30 @@ reparte (x: y: xs) = (x: ys, y: zs)
 --EJERCICIO 4
 distintos :: Eq a => [a] -> Bool
 distintos [] = True
-distintos [x] = True
-distintos (x: xs) 
-    | x `elem` xs = False --elem te dice si un valor esta en la lista
-    | otherwise = distintos xs
+distintos (x: xs) = not (x `elem` xs)  && distintos xs
 
 
 --EJERCICIO 11
 
     --apartado a   
 take' :: Int -> [a] -> [a]
-take' :: n xs = [ ?| (p,x) <- zip [0.. ??] xs]
+take' n xs = [ x | (p,x) <- zip [0..n-1] xs]
 
     --apartado b
 drop' :: Int -> [a] -> [a]
-drop' n xs = [?? | (p,x) <- zip [??] xs, ??]
+drop' n xs = [ x | (p,x) <- zip [0..] xs, n<=p]
 
-    --apartado c propiedades 
+    --apartado c  
+
+
+--EJERCICIO 13
+desconocida :: (Ord a) => [a] -> Bool
+desconocida xs = and [x<=y | (x,y) <- zip xs (tail xs)]
+{-ej: xs=[1,2,3] tail xs = [2,3]
+compara (1,2), (2,3) sea cada par x<=y
+sirve para saber si esta ordenada una lista-}
+
+
+--EJERCICIO 14
+inserta:: (Ord a) -> a -> [a] -> [a]
+inserta x xs = take (<x) xs --i don't know mister
