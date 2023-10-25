@@ -84,7 +84,7 @@ p_descomponer x = x>=0 ==> h*3600 + m*60 + s == x
 infix 0 ~=
 (~=) :: (Ord a, Fractional a) => a -> a -> Bool
 x ~= y = abs (x-y) < epsilon
-  where epsilon = 1e-5
+  where epsilon = 1e-5
 
 {-
 
