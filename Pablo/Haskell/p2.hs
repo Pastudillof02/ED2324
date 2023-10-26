@@ -34,6 +34,20 @@ _drop n xs = [x | (p,x) <- zip [0..(length xs)-1] xs, p >= n]
 
 --------------------------------------------------------------------------------
 
+-- EJERCICIO 12
+
+-- a)
+
+_concat :: [[a]] -> [a]
+_concat xs = foldr (++) [] xs
+
+-- b)
+
+concat' :: [[a]] -> [a]
+concat' xs = [x | ys <- xs, x <- ys]
+
+--------------------------------------------------------------------------------
+
 -- EJERCICIO 13
 
 desconocida :: (Ord a) => [a] -> Bool
@@ -78,3 +92,8 @@ p1_ordena xs = desconocida (ordena xs)
 
 -- EJERCICIO 22
 
+binarios :: Int -> [String]
+binarios 0 = [""]
+binarios n = [c : s | s <- binarios (n - 1), c <- "01"]
+
+--------------------------------------------------------------------------------
