@@ -44,7 +44,7 @@ bag2List = undefined
 -- True
 
 contains :: Ord a => a -> Bag a -> Bool
-contains x = undefined
+contains x = foldBag (\e oe s -> if e == x then True else s) False
 
 -- número de veces que aparece el elemento que aparece más veces en una bolsa
 --
@@ -52,4 +52,4 @@ contains x = undefined
 -- 5
 
 maxOcurrences :: Ord a => Bag a -> Int
-maxOcurrences = undefined
+maxOcurrences = foldBag (\e oe s -> max oe s) 0
