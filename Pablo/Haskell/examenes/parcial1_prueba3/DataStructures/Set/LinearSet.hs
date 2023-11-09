@@ -48,7 +48,7 @@ delete x (Node y s)
  | x == y      = s
  | otherwise   = Node y (delete x s)
 
-size :: Set a -> Int
+size :: Set a -> Integer
 size Empty       = 0
 size (Node _ s)  = 1 + size s
 
