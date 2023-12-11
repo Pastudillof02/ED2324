@@ -13,8 +13,6 @@ f1 (x,y)    | x==0  = y+1
             | otherwise = f1(x-1,f1(x,y-1))
 
 
-
-
 -- EJERCICIO 5 --
 
 cerosUnos :: Integer -> (Integer, Integer)
