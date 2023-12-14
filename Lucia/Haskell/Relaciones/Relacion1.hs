@@ -130,6 +130,8 @@ eurosAPesetas x = x*unEuro
 
     -- apartado c --
 --p_inversas x = eurosAPesetas (pesetasAEuros x) == x
+--Al trabajar con double podemos perder precision en las divisiones por lo q no es lo mas correcto hacer == estricta si no aplicarle un margen de error
+
 
 
 -- EJERCICIO 9 -- 
@@ -168,7 +170,7 @@ esMúltiplo x y | y>0 = ((mod x y) == 0)
                | otherwise = False
 
 
--- EJERCICIO 12  no entendi hacer--
+-- EJERCICIO 12
 infixl 1 ==>>
 (==>>) :: Bool -> Bool -> Bool
 False ==>> y = True --si el primer argumento es F independientemente del valor del segundo parametro vale T
@@ -177,22 +179,23 @@ True ==>> True = True
 
 -- EJERCICIO 13  revisar-- 
 esBisiesto :: Integer -> Bool
-esBisiesto x = esMúltiplo x 4 ==>> esMúltiplo x 100 ==>> esMúltiplo x 400
+esBisiesto x = esMúltiplo x 4 && esMúltiplo x 100 ==>> esMúltiplo x 400
 
 
--- EJERCICIO 14 repetir esta mal--
+-- EJERCICIO 14
 potencia :: Integer -> Integer -> Integer
-potencia x y | y==0 = 1
-             | y>0 = x*(potencia x (y-1))
+potencia x y | y == 0 = 1
+             | y==1 = x
+             | y>1 = x * (potencia x (y-1))
              | otherwise = error "Exponente no natural"
 
 potencia' :: Integer -> Integer -> Integer
-potencia' x y | y==0 = 1
-              | y==1 = x
-              | y==2 = x*x
-              | y>2 && (mod y 2 ==0) = potencia' (potencia' x (div y 2)) 2 
-              | y>2 && (mod y 2 /=0) = potencia' (potencia' x (div (y-1) 2)) 2
-              |otherwise = error "Exponente no natural"
+potencia' x y   | y == 0 = 1
+                | otherwise = imp * (potencia' x (expo `div` 2))^2
+    where
+      expo = if even y then y else y-1 --para saber si resto o no el -1 en el exponente
+      imp = if even y then 1 else x --para saber si multiplico o no la b
+ 
 
 
 -- EJERCICIO 15 --
