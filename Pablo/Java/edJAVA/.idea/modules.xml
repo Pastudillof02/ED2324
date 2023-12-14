@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ArbolBinarioBusquedaAumentados/ArbolBinarioBusquedaAumentados.iml" filepath="$PROJECT_DIR$/ArbolBinarioBusquedaAumentados/ArbolBinarioBusquedaAumentados.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArbolBinarioDeBusquedaAumentado/ArbolBinarioDeBusquedaAumentado.iml" filepath="$PROJECT_DIR$/ArbolBinarioDeBusquedaAumentado/ArbolBinarioDeBusquedaAumentado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MonticuloMaxifobicoResolver/MonticuloMaxifobicoResolver.iml" filepath="$PROJECT_DIR$/MonticuloMaxifobicoResolver/MonticuloMaxifobicoResolver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TreeVector/TreeVector.iml" filepath="$PROJECT_DIR$/TreeVector/TreeVector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/edJAVA.iml" filepath="$PROJECT_DIR$/.idea/edJAVA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monticulosBinarios/monticulosBinarios.iml" filepath="$PROJECT_DIR$/monticulosBinarios/monticulosBinarios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/searchTree/searchTree.iml" filepath="$PROJECT_DIR$/searchTree/searchTree.iml" />
+    </modules>
+  </component>
+</project>
